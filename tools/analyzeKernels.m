@@ -42,11 +42,11 @@ grid on;
 horizon1_1 = 2.015;
 horizon1_2 = 2.015;
 horizon1_3 = 2.015;
-derivative1_1 = conv(g1_1,y)*dx/(horizon1_1*dx);
+derivative1_1 = conv(g1_1,y);
 derivative1_1 = derivative1_1(1,3:end-2);
-derivative1_2 = conv(g1_2,y)*dx/(horizon1_2*dx);
+derivative1_2 = conv(g1_2,y);
 derivative1_2 = derivative1_2(1,3:end-2);
-derivative1_3 = conv(g1_3,y)*dx/(horizon1_3*dx);
+derivative1_3 = conv(g1_3,y);
 derivative1_3 = derivative1_3(1,3:end-2);
 figure; plot(xCoords(1,5:end-4),firstDerivative(1,5:end-4),'o')
 hold on;
@@ -63,9 +63,10 @@ p1_3 = polyfit(xCoords(1,5:end-4),derivative1_3(1,5:end-4),1) ;
 %%Second Order Derivatives
 horizon2_1 = 3.015;
 horizon2_2 = 5.015;
-derivative2_1 = conv(g2_1,y)*dx/(horizon2_1^2*dx^2);
+%derivative2_1 = conv(g2_1,y)*dx/(horizon2_1^2*dx^2);
+derivative2_1 = conv(g2_1,y);
 derivative2_1 = derivative2_1(1,4:end-3);
-derivative2_2 = conv(g2_2,y)*dx/(horizon2_2^2*dx^2);
+derivative2_2 = conv(g2_2,y);
 derivative2_2 = derivative2_2(1,4:end-3);
 
 figure;
