@@ -2,19 +2,39 @@ clear all;
 close all;
 
 addpath('../data/')
+dt = 0.000000001;
+numSteps = 8*5000;
+g2_1 = table2array(readtable('g2_1.csv'));
 
-
-coords = table2array(readtable('coords.csv'));
-linearFunction = table2array(readtable('linearFunction.csv'));
-quadraticFunction = table2array(readtable('quadraticFunction.csv'));
-linearFunctionNoisy = table2array(readtable('linearFunctionNoisy.csv'));
-quadraticFunctionNoisy = table2array(readtable('quadraticFunctionNoisy.csv'));
-
-figure; plot(coords,linearFunction,'-o')
+signalLinear = table2array(readtable('signalLinear.csv'));
+signalLinearNoisy = table2array(readtable('signalLinearNoisy.csv'));
+figure; 
+plot(signalLinear,'-^','color','b')
 hold on;
-plot(coords,linearFunctionNoisy,'^')
+plot(signalLinearNoisy,'-*','color', 'r')
+for i=0:numSteps
+    filteredLinear = conv(g2_1,signalLinearNoisy);
+    filteredLinear = signalLinearNoisy +  dt*filteredLinear(4:end-3);
+    signalLinearNoisy = filteredLinear;
+    
+end
+plot(filteredLinear,'-o','color','g')
+legend('Original Signal', 'Noisy Signal', 'DeNoised Signal')
 grid on;
-figure; plot(coords,quadraticFunction,'-o')
+
+
+signalQuadratic = table2array(readtable('signalQuadratic.csv'));
+signalQuadraticNoisy = table2array(readtable('signalQuadraticNoisy.csv'));
+figure; 
+plot(signalQuadratic,'-^','color','b')
 hold on;
-plot(coords,quadraticFunctionNoisy,'^')
+plot(signalQuadraticNoisy,'-*','color','r')
+for i=0:numSteps
+    filteredQuadratic = conv(g2_1,signalQuadraticNoisy);
+    filteredQuadratic = signalQuadraticNoisy +  dt*filteredQuadratic(4:end-3);
+    signalQuadraticNoisy = filteredQuadratic;
+    
+end
+plot(filteredQuadratic,'-o','color','g')
+legend('Original Signal', 'Noisy Signal', 'DeNoised Signal')
 grid on;
