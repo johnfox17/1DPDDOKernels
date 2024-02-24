@@ -35,7 +35,7 @@ class secondOrder_1_1DPDDOKernel:
             xiMag = np.sqrt(currentXi**2)
             pList = np.array([1, currentXi/deltaMag, (currentXi/deltaMag)**2])
             weight = np.exp(-4*(xiMag/deltaMag)**2)
-            g.append(weight*(np.inner(solve(diffMat,self.bVec), pList)))
+            g.append((self.dx/(self.horizon**2*self.dx**2))*weight*(np.inner(solve(diffMat,self.bVec), pList)))
         self.g = np.array(g).reshape((self.kernelDim,1))
         self.g[np.absolute(self.g)<10**-9]=0
 
