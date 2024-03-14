@@ -2,6 +2,15 @@ import numpy as np
 #Defining constants for PDDO algorithm
 L = 1
 N = 512
+M = 2.0                 #Slope of linear function
+B = 0.5                 #Y-intercept of linear function
+A = -2.0                #Coefficient of quadratic function
+H = -0.5                #X-coordinate of vertex of parabola
+K = 1.0                 #Y-coordinate of vertex of parabola
+R = 2.0                 #Exponent of parabola
+ALPHA = 3.0             #Coefficient of independent variable of signal  
+BETA = -2.0             #Y shift of signal
+GAMMA = 3.0             #Exponent of signal
 HORIZON1 = 2.015
 HORIZON2 = 3.015
 HORIZON4 = 5.015 #Because the PDE is 4th order

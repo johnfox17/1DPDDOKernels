@@ -32,7 +32,12 @@ def main():
     np.savetxt('C:\\Users\\docta\\Documents\\Thesis\\1DPDDOKernels\\data\\signalQuadratic.csv', signals.quadraticFunction, delimiter=",")
     np.savetxt('C:\\Users\\docta\\Documents\\Thesis\\1DPDDOKernels\\data\\signalLinearNoisy.csv',  signals.linearFunctionNoisy, delimiter=",")
     np.savetxt('C:\\Users\\docta\\Documents\\Thesis\\1DPDDOKernels\\data\\signalQuadraticNoisy.csv', signals.quadraticFunctionNoisy, delimiter=",")
+    np.savetxt('C:\\Users\\docta\\Documents\\Thesis\\1DPDDOKernels\\data\\g1_1.csv', PDDOKernel1_1.g, delimiter=",")
     np.savetxt('C:\\Users\\docta\\Documents\\Thesis\\1DPDDOKernels\\data\\g2_1.csv', PDDOKernel2_1.g, delimiter=",")
+
+    np.savetxt('C:\\Users\\docta\\Documents\\Thesis\\1DPDDOKernels\\data\\signal.csv', signals.signal, delimiter=",")
+    np.savetxt('C:\\Users\\docta\\Documents\\Thesis\\1DPDDOKernels\\data\\firstDerivativeOfSignal.csv', signals.firstDerivativeOfSignal, delimiter=",")
+    np.savetxt('C:\\Users\\docta\\Documents\\Thesis\\1DPDDOKernels\\data\\secondDerivativeOfSignal.csv', signals.secondDerivativeOfSignal, delimiter=",")
 
 
     '''np.savetxt('/home/doctajfox/Documents/Thesis/1DPDDOKernels/data/g1_1.csv', PDDOKernel1_1.g, delimiter=",")
