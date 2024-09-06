@@ -10,8 +10,8 @@ class secondOrder_2_1DPDDOKernel:
         self.l = PDDOConstants.L
         self.delta = PDDOConstants.HORIZON4*self.dx
         self.bVec = PDDOConstants.BVEC2_2
-        self.horizon = PDDOConstants.HORIZON2
-        self.kernelDim = PDDOConstants.KERNELDIM2
+        self.horizon = PDDOConstants.HORIZON4
+        self.kernelDim = PDDOConstants.KERNELDIM4
 
     def createPDDOKernelMesh(self):
         self.coords = np.arange(self.dx/2, (self.horizon*2 + 1)*self.dx, self.dx)
@@ -35,7 +35,7 @@ class secondOrder_2_1DPDDOKernel:
             xiMag = np.sqrt(currentXi**2)
             pList = np.array([1, currentXi/deltaMag, (currentXi/deltaMag)**2, (currentXi/deltaMag)**3])
             weight = np.exp(-4*(xiMag/deltaMag)**2)
-            g.append(weight*(np.inner(solve(diffMat,self.bVec), pList)))
+            g.append(weight*(np.inner(solve(diffMat,self.bVec), pList))*(self.dx/(self.horizon**2*self.dx**2)))
         self.g = np.array(g).reshape((self.kernelDim,1))
         self.g[np.absolute(self.g)<10**-9]=0
 

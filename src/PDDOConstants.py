@@ -2,6 +2,8 @@ import numpy as np
 #Defining constants for PDDO algorithm
 L = 1
 N = 512
+T = 0.5
+dt = 0.00001
 HORIZON1 = 2.015
 HORIZON2 = 3.015
 HORIZON4 = 5.015 #Because the PDE is 4th order
