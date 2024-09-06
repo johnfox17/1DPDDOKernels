@@ -2,24 +2,70 @@ clear all;
 %close all;
 
 addpath('../data/')
-
-
-coords = table2array(readtable('coords.csv'));
-% linearFunction = table2array(readtable('linearFunction.csv'));
-% quadraticFunction = table2array(readtable('quadraticFunction.csv'));
-% linearFunctionNoisy = table2array(readtable('linearFunctionNoisy.csv'));
-% quadraticFunctionNoisy = table2array(readtable('quadraticFunctionNoisy.csv'));
-% 
-% figure; plot(coords,linearFunction,'-o')
-% hold on;
-% plot(coords,linearFunctionNoisy,'^')
-% grid on;
-% figure; plot(coords,quadraticFunction,'-o')
-% hold on;
-% plot(coords,quadraticFunctionNoisy,'^')
-% grid on;
-addpath('../data/')
+%Load data
+signalLinear = table2array(readtable('signalLinear.csv'));
+signalLinearNoisy = table2array(readtable('signalLinearNoisy.csv'));
+signalQuadratic = table2array(readtable('signalQuadratic.csv'));
+signalQuadraticNoisy = table2array(readtable('signalQuadraticNoisy.csv'));
 signal = table2array(readtable('signal.csv'));
-plot(signal,'-o')
+firstDerivativeOfSignal = table2array(readtable('firstDerivativeOfSignal.csv'));
+secondDerivativeOfSignal = table2array(readtable('secondDerivativeOfSignal.csv'));
+g1_1 = table2array(readtable('g1_1.csv'));
+g2_1 = table2array(readtable('g2_1.csv'));
+coords = table2array(readtable('coords.csv'));
+%Demonstrate that derivatives work
+%First Derivative
+PDDOFirstDerivative = conv(g1_1,signal);
+PDDOFirstDerivative =PDDOFirstDerivative(3:end-2);
+figure; plot(firstDerivativeOfSignal(3:end-2),'o')
 hold on;
-plot(signal,'-o')
+plot(PDDOFirstDerivative(3:end-2),'^')
+grid on;
+title('First Derivative')
+legend('Analytical', 'PDDO')
+
+PDDOSecondDerivative = conv(g2_1,signal);
+PDDOSecondDerivative =PDDOSecondDerivative(4:end-3);
+figure; plot(secondDerivativeOfSignal(4:end-3),'o')
+hold on;
+plot(PDDOSecondDerivative(4:end-3),'^')
+grid on;
+title('Second Derivative')
+legend('Analytical', 'PDDO')
+
+
+
+dt = 0.000000001;
+numSteps = 15*5000;
+
+
+
+figure; 
+plot(signalLinear,'-^','color','b')
+hold on;
+plot(signalLinearNoisy,'-*','color', 'r')
+for i=0:numSteps
+    filteredLinear = conv(g2_1,signalLinearNoisy);
+    filteredLinear = signalLinearNoisy +  dt*filteredLinear(4:end-3);
+    signalLinearNoisy = filteredLinear;
+    
+end
+plot(filteredLinear,'-o','color','g')
+legend('Original Signal', 'Noisy Signal', 'DeNoised Signal')
+grid on;
+title('Linear Signal')
+
+figure; 
+plot(signalQuadratic,'-^','color','b')
+hold on;
+plot(signalQuadraticNoisy,'-*','color','r')
+for i=0:numSteps
+    filteredQuadratic = conv(g2_1,signalQuadraticNoisy);
+    filteredQuadratic = signalQuadraticNoisy +  dt*filteredQuadratic(4:end-3);
+    signalQuadraticNoisy = filteredQuadratic;
+    
+end
+plot(filteredQuadratic,'-o','color','g')
+legend('Original Signal', 'Noisy Signal', 'DeNoised Signal')
+grid on;
+title('Quadratic Signal')
