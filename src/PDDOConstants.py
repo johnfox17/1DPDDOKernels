@@ -2,6 +2,8 @@ import numpy as np
 #Defining constants for PDDO algorithm
 L = 1
 N = 512
+T = 0.5
+dt = 0.00001
 M = 2.0                 #Slope of linear function
 B = 0.5                 #Y-intercept of linear function
 A = -2.0                #Coefficient of quadratic function
