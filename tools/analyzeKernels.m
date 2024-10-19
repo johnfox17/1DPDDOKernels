@@ -16,14 +16,14 @@ hold on;
 plot(-2:2,g1_2,'-^')
 plot(-2:2, g1_3,'-*')
 grid on;
-title('First Order GPolynomials')
+title('First Order PDDO Kernels')
 legend('g^1_1','g^1_2','g^1_3')
 
 figure; plot(-3:3,g2_1,'-o')
 hold on;
 plot(-5:5,g2_2,'-^')
 grid on;
-title('Second Order GPolynomials')
+title('Second Order PDDO Kernels')
 legend('g^2_1','g^2_2')
 
 %Create function for 1st derivative

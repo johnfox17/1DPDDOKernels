@@ -35,10 +35,10 @@ def main():
     np.savetxt('../data/g2_1.csv', PDDOKernel2_1.g, delimiter=",")
     np.savetxt('../data/g2_2.csv', PDDOKernel2_2.g, delimiter=",")
 
-    deNoisedSignal = denoiseSignal.denoiseSignal1D(PDDOKernel2_1.g, signals.quadraticFunctionNoisy)
-    deNoisedSignal.solve()
+    #deNoisedSignal = denoiseSignal.denoiseSignal1D(PDDOKernel2_1.g, signals.quadraticFunctionNoisy)
+    #deNoisedSignal.solve()
 
-
+    np.savetxt('../data/signalCoords.csv',  signals.coords, delimiter=",")
     np.savetxt('../data/signalLinear.csv',  signals.linearFunction, delimiter=",")
     np.savetxt('../data/signalQuadratic.csv', signals.quadraticFunction, delimiter=",")
     np.savetxt('../data/signalLinearNoisy.csv',  signals.linearFunctionNoisy, delimiter=",")
