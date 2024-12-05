@@ -32,8 +32,8 @@ def main():
     np.savetxt('../data/g1_1.csv', PDDOKernel1_1.g, delimiter=",")
     np.savetxt('../data/g1_2.csv', PDDOKernel1_2.g, delimiter=",")
     np.savetxt('../data/g1_3.csv', PDDOKernel1_3.g, delimiter=",")
-    np.savetxt('../data/g2_1.csv', PDDOKernel2_1.g, delimiter=",")
-    np.savetxt('../data/g2_2.csv', PDDOKernel2_2.g, delimiter=",")
+    np.savetxt('../data/g2_2.csv', PDDOKernel2_1.g, delimiter=",")
+    np.savetxt('../data/g2_3.csv', PDDOKernel2_2.g, delimiter=",")
 
     #deNoisedSignal = denoiseSignal.denoiseSignal1D(PDDOKernel2_1.g, signals.quadraticFunctionNoisy)
     #deNoisedSignal.solve()

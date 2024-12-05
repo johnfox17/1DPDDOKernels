@@ -8,10 +8,10 @@ class firstOrder_2_1DPDDOKernel:
     def __init__(self):
         self.dx = 1/PDDOConstants.N
         self.l = PDDOConstants.L
-        self.delta = PDDOConstants.HORIZON1*self.dx
+        self.delta = PDDOConstants.HORIZON2*self.dx
         self.bVec = PDDOConstants.BVEC1_2
-        self.horizon = PDDOConstants.HORIZON1
-        self.kernelDim = PDDOConstants.KERNELDIM1
+        self.horizon = PDDOConstants.HORIZON2
+        self.kernelDim = PDDOConstants.KERNELDIM2
 
     def createPDDOKernelMesh(self):
         self.coords = np.arange(self.dx/2, (self.horizon*2 + 1)*self.dx, self.dx)

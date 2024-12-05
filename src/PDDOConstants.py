@@ -15,6 +15,7 @@ BETA = -2.0             #Y shift of signal
 GAMMA = 3.0             #Exponent of signal
 HORIZON1 = 2.015
 HORIZON2 = 3.015
+HORIZON3 = 4.015
 HORIZON4 = 5.015 #Because the PDE is 4th order
 BVEC0 = np.array([1])
 BVEC1_1 = np.array([0, 1])
@@ -30,5 +31,6 @@ BVEC4_3 = np.array([0, 0, 0, 0, 24, 0, 0])
 
 KERNELDIM1 = 5 #2*HORIZON1+1
 KERNELDIM2 = 7
+KERNELDIM3 = 9
 KERNELDIM4 = 11
 

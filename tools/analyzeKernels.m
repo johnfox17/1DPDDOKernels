@@ -7,21 +7,21 @@ addpath('../data/')
 g1_1 = table2array(readtable('g1_1.csv'));
 g1_2 = table2array(readtable('g1_2.csv'));
 g1_3 = table2array(readtable('g1_3.csv'));
-g2_1 = table2array(readtable('g2_1.csv'));
 g2_2 = table2array(readtable('g2_2.csv'));
+g2_3 = table2array(readtable('g2_3.csv'));
 
 
 figure; plot(-2:2,g1_1,'-o')
 hold on;
-plot(-2:2,g1_2,'-^')
-plot(-2:2, g1_3,'-*')
+plot(-3:3,g1_2,'-^')
+plot(-4:4, g1_3,'-*')
 grid on;
 title('First Order PDDO Kernels')
 legend('g^1_1','g^1_2','g^1_3')
 
-figure; plot(-3:3,g2_1,'-o')
+figure; plot(-3:3,g2_2,'-o')
 hold on;
-plot(-5:5,g2_2,'-^')
+plot(-4:4,g2_3,'-^')
 grid on;
 title('Second Order PDDO Kernels')
 legend('g^2_1','g^2_2')
@@ -85,7 +85,7 @@ secondDerivative_2 = polyOrder*(polyOrder-1).*xCoords_2.^(polyOrder-2);
 
 
 %%Second Order Derivatives
-derivative2_1 = conv(y_1,g2_1,'same');
+derivative2_1 = conv(y_1,g2_2,'same');
 derivative2_2 = conv(y_2,g2_2,'same');
 
 figure;
