@@ -16,21 +16,21 @@ hold on;
 plot(-3:3,g1_2,'-^')
 plot(-4:4, g1_3,'-*')
 grid on;
-title('First Order PDDO Kernels')
+%title('First Order PDDO Kernels')
 legend('g^1_1','g^1_2','g^1_3')
 
 figure; plot(-3:3,g2_2,'-o')
 hold on;
 plot(-4:4,g2_3,'-^')
 grid on;
-title('Second Order PDDO Kernels')
+%title('Second Order PDDO Kernels')
 legend('g^2_1','g^2_2')
 
 %Create function for 1st derivative
 dx = 1/512;
-horizon = 2;
+horizon = 6;
 xCoords = -5-horizon*dx:dx:5+horizon*dx;
-polyOrder = 3;
+polyOrder = 4;
 y = xCoords.^polyOrder;
 firstDerivative = polyOrder.*xCoords.^(polyOrder-1);
 secondDerivative = polyOrder*(polyOrder-1).*xCoords.^(polyOrder-2);
@@ -53,20 +53,20 @@ grid on;
 derivative1_1 = conv(y,g1_1,'same');
 derivative1_2 = conv(y,g1_2,'same');
 derivative1_3 = conv(y,g1_3,'same');
-figure; plot(xCoords(3:end-2),firstDerivative(3:end-2),'o')
+figure; plot(xCoords(horizon:end-(horizon-1)),firstDerivative(horizon:end-(horizon-1)),'o')
 hold on;
-plot(xCoords(3:end-2),derivative1_1(3:end-2),'^')
-plot(xCoords(3:end-2),derivative1_2(3:end-2),'*')
-plot(xCoords(3:end-2),derivative1_3(3:end-2),'.')
+plot(xCoords(horizon:end-(horizon-1)),derivative1_1(horizon:end-(horizon-1)),'^')
+plot(xCoords(horizon:end-(horizon-1)),derivative1_2(horizon:end-(horizon-1)),'*')
+plot(xCoords(horizon:end-(horizon-1)),derivative1_3(horizon:end-(horizon-1)),'.')
 grid on;
 legend('Analytical','conv(y,g^1_1)','conv(y,g^1_2)','conv(y,g^1_3)')
 title('Analytical vs Conv With First Order PDDO Kernels')
 
 %Plotting Errors
-figure; plot(xCoords(3:end-2),firstDerivative(3:end-2)-derivative1_1(3:end-2),'o')
+figure; plot(xCoords(horizon:end-(horizon-1)),firstDerivative(horizon:end-(horizon-1))-derivative1_1(horizon:end-(horizon-1)),'o')
 hold on;
-plot(xCoords(3:end-2),firstDerivative(3:end-2)-derivative1_2(3:end-2),'^')
-plot(xCoords(3:end-2),firstDerivative(3:end-2)-derivative1_3(3:end-2),'*')
+plot(xCoords(horizon:end-(horizon-1)),firstDerivative(horizon:end-(horizon-1))-derivative1_2(horizon:end-(horizon-1)),'^')
+plot(xCoords(horizon:end-(horizon-1)),firstDerivative(horizon:end-(horizon-1))-derivative1_3(horizon:end-(horizon-1)),'*')
 grid on;
 legend('g^1_1','g^1_2','g^1_3')
 title('Errors vs Analytical Solution')
