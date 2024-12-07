@@ -8,9 +8,9 @@ class firstOrder_3_1DPDDOKernel:
     def __init__(self):
         self.dx = 1/PDDOConstants.N
         self.l = PDDOConstants.L
-        self.delta = PDDOConstants.HORIZON3*self.dx
+        self.delta = PDDOConstants.HORIZON4*self.dx
         self.bVec = PDDOConstants.BVEC1_3
-        self.horizon = PDDOConstants.HORIZON3
+        self.horizon = PDDOConstants.HORIZON4
         self.kernelDim = PDDOConstants.KERNELDIM3
 
     def createPDDOKernelMesh(self):

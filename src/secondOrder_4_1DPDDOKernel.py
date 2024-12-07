@@ -4,14 +4,14 @@ from sklearn.neighbors import KDTree
 from numpy.linalg import solve
 
 
-class secondOrder_2_1DPDDOKernel:
+class secondOrder_4_1DPDDOKernel:
     def __init__(self):
         self.dx = 1/PDDOConstants.N
         self.l = PDDOConstants.L
-        self.delta = PDDOConstants.HORIZON3*self.dx
-        self.bVec = PDDOConstants.BVEC2_2
-        self.horizon = PDDOConstants.HORIZON3
-        self.kernelDim = PDDOConstants.KERNELDIM3
+        self.delta = PDDOConstants.HORIZON5*self.dx
+        self.bVec = PDDOConstants.BVEC2_4
+        self.horizon = PDDOConstants.HORIZON5
+        self.kernelDim = PDDOConstants.KERNELDIM4
 
     def createPDDOKernelMesh(self):
         self.coords = np.arange(self.dx/2, (self.horizon*2 + 1)*self.dx, self.dx)
@@ -22,18 +22,18 @@ class secondOrder_2_1DPDDOKernel:
 
     def calculateGPolynomials(self):
         deltaMag = self.delta
-        diffMat = np.zeros([4,4])
+        diffMat = np.zeros([5,5])
         g = []
         for iNode in range(len(self.coords)):
             currentXi = self.xis[iNode]
             xiMag = np.sqrt(currentXi**2)
-            pList = np.array([1, currentXi/deltaMag, (currentXi/deltaMag)**2, (currentXi/deltaMag)**3])
+            pList = np.array([1, currentXi/deltaMag, (currentXi/deltaMag)**2, (currentXi/deltaMag)**3, (currentXi/deltaMag)**4])
             weight = np.exp(-4*(xiMag/deltaMag)**2)
             diffMat += weight*np.outer(pList,pList)*self.dx
         for iNode in range(len(self.coords)):
             currentXi = self.xis[iNode]
             xiMag = np.sqrt(currentXi**2)
-            pList = np.array([1, currentXi/deltaMag, (currentXi/deltaMag)**2, (currentXi/deltaMag)**3])
+            pList = np.array([1, currentXi/deltaMag, (currentXi/deltaMag)**2, (currentXi/deltaMag)**3, (currentXi/deltaMag)**4])
             weight = np.exp(-4*(xiMag/deltaMag)**2)
             g.append(weight*(np.inner(solve(diffMat,self.bVec), pList))*(self.dx/(self.horizon**2*self.dx**2)))
         self.g = np.array(g).reshape((self.kernelDim,1))

@@ -7,8 +7,8 @@ addpath('../data/')
 g1_1 = table2array(readtable('g1_1.csv'));
 g1_2 = table2array(readtable('g1_2.csv'));
 g1_3 = table2array(readtable('g1_3.csv'));
-g2_2 = table2array(readtable('g2_2.csv'));
 g2_3 = table2array(readtable('g2_3.csv'));
+g2_4 = table2array(readtable('g2_4.csv'));
 
 
 figure; plot(-2:2,g1_1,'-o')
@@ -19,12 +19,12 @@ grid on;
 %title('First Order PDDO Kernels')
 legend('g^1_1','g^1_2','g^1_3')
 
-figure; plot(-3:3,g2_2,'-o')
+figure; plot(-4:4,g2_3,'-o')
 hold on;
-plot(-4:4,g2_3,'-^')
+plot(-5:5,g2_4,'-^')
 grid on;
 %title('Second Order PDDO Kernels')
-legend('g^2_1','g^2_2')
+legend('g^2_3','g^2_4')
 
 %Create function for 1st derivative
 dx = 1/512;
@@ -74,35 +74,35 @@ xlabel('x');
 ylabel('Error');
 
 %Create functions for second derivative
-horizon = 3;
+horizon = 6;
 xCoords_1 = -5-horizon*dx:dx:5+horizon*dx;
 y_1 = xCoords_1.^polyOrder;
 secondDerivative_1 = polyOrder*(polyOrder-1).*xCoords_1.^(polyOrder-2);
-horizon = 5;
+horizon = 6;
 xCoords_2 = -5-horizon*dx:dx:5+horizon*dx;
 y_2 = xCoords_2.^polyOrder;
 secondDerivative_2 = polyOrder*(polyOrder-1).*xCoords_2.^(polyOrder-2);
 
 
 %%Second Order Derivatives
-derivative2_1 = conv(y_1,g2_2,'same');
-derivative2_2 = conv(y_2,g2_2,'same');
+derivative2_3 = conv(y_1,g2_3,'same');
+derivative2_4 = conv(y_2,g2_4,'same');
 
 figure;
-plot(xCoords(3:end-2),secondDerivative(3:end-2),'o')
+plot(xCoords(horizon:end-(horizon-1)),secondDerivative(horizon:end-(horizon-1)),'o')
 hold on;
-plot(xCoords_1(4:end-3),derivative2_1(4:end-3),'^')
-plot(xCoords_2(6:end-5),derivative2_2(6:end-5),'*')
+plot(xCoords_1(horizon:end-(horizon-1)),derivative2_3(horizon:end-(horizon-1)),'^')
+plot(xCoords_2(horizon:end-(horizon-1)),derivative2_4(horizon:end-(horizon-1)),'*')
 grid on;
-legend('Analytical','conv(y,g^2_1)', 'conv(y,g^2_2)')
+legend('Analytical','conv(y,g^2_3)', 'conv(y,g^2_4)')
 title('Analytical vs Conv With Second Order PDDO Kernels')
 
 figure;
-plot(xCoords(3:end-2),secondDerivative(3:end-2)-derivative2_1(4:end-3),'o')
+plot(xCoords(horizon:end-(horizon-1)),secondDerivative(horizon:end-(horizon-1))-derivative2_3(horizon:end-(horizon-1)),'o')
 hold on;
-plot(xCoords(3:end-2),secondDerivative(3:end-2)-derivative2_2(6:end-5),'*')
+plot(xCoords(horizon:end-(horizon-1)),secondDerivative(horizon:end-(horizon-1))-derivative2_4(horizon:end-(horizon-1)),'*')
 title('Errors vs Analytical Solution')
-legend('g^2_1', 'g^2_2')
+legend('g^2_3', 'g^2_4')
 grid on;
 xlabel('x');
 ylabel('Error');

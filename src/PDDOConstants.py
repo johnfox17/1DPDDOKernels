@@ -13,17 +13,19 @@ R = 2.0                 #Exponent of parabola
 ALPHA = 3.0             #Coefficient of independent variable of signal  
 BETA = -2.0             #Y shift of signal
 GAMMA = 3.0             #Exponent of signal
-HORIZON1 = 2.015
-HORIZON2 = 3.015
-HORIZON3 = 4.015
-HORIZON4 = 5.015 #Because the PDE is 4th order
+HORIZON2 = 2.015
+HORIZON3 = 3.015
+HORIZON4 = 4.015
+HORIZON5 = 5.015 #Because the PDE is 4th order
 BVEC0 = np.array([1])
 BVEC1_1 = np.array([0, 1])
 BVEC1_2 = np.array([0, 1, 0])
 BVEC1_3 = np.array([0, 1, 0, 0])
-BVEC2_1 = np.array([0, 0, 2])
-BVEC2_2 = np.array([0, 0, 2, 0])
-BVEC2_3 = np.array([0, 0, 2, 0, 0])
+
+BVEC2_2 = np.array([0, 0, 2])
+BVEC2_3 = np.array([0, 0, 2, 0])
+BVEC2_4 = np.array([0, 0, 2, 0, 0])
+
 BVEC4_1 = np.array([0, 0, 0, 0, 24])
 BVEC4_2 = np.array([0, 0, 0, 0, 24, 0])
 BVEC4_3 = np.array([0, 0, 0, 0, 24, 0, 0])
